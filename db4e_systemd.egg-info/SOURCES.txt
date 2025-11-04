@@ -1,9 +1,0 @@
-LICENSE
-README.md
-pyproject.toml
-setup.py
-Db4eSystemd/__init__.py
-db4e_systemd.egg-info/PKG-INFO
-db4e_systemd.egg-info/SOURCES.txt
-db4e_systemd.egg-info/dependency_links.txt
-db4e_systemd.egg-info/top_level.txt

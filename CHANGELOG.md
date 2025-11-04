@@ -1,31 +1,14 @@
-## [1.2.3] -2025-08-20
-- BugFix: active() wasn't returning the correct value
+# Changelog
 
-## [1.2.2] - 2025-06-26
-- BugFix: stop() wasn't returning the return code.
+All notable changes to this project will be documented in this file.
 
-## [1.2.1] - 2025-06-26
-- BugFix: Included the updated code (double DOH)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.0] - 2025-06-26
-- BugFix: Fixed clash between method and property (service_name) names.
-- Feature: When start(), stop(), enable() or disable() is called, return the returncode.
-- BugFix: All sysemctl commands require sudo, except for status.
-- Docs: Added additional documention around limiting access with sudo.
+---
 
-## [1.1.1] - 2025-06-26
-- BugFix: Included the updated code (DOH)
+## [Unreleased]
 
-## [1.1.0] - 2025-06-26
-- Feature: Added enable() to enable startup at boot time
-- Feature: Added disable() to disable startup at boot time
-These features require sudo access. 
+### Added
 
-## [1.0.2] - 2025-06-25
-- BugFix: status() was calling \_run_systemd() with an extra arg
-- BugFix: start() was calling \_run_systemd() with an extra arg
-- BugFix: stop() was calling \_run_systemd() with an extra arg
-
-## [1.0.1] - 2025-06-25
-### Fixed
-- BugFix: __init__ was calling status() with an extra arg
+- Imported the code from [Db4E](https://github.com/NadimGhaznavi/db4e)

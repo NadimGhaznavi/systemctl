@@ -1,10 +1,10 @@
 """
-db4e/Modules/Db4eSystemd.py
+systemctl/__init__.py
 
-    Database 4 Everything
+    systemctl - A Python wrapper for the systemctl command line utility.
     Author: Nadim-Daniel Ghaznavi 
-    Copyright: (c) 2024-2025 Nadim-Daniel Ghaznavi
-    GitHub: https://github.com/NadimGhaznavi/db4e
+    Copyright: (c) 2025 Nadim-Daniel Ghaznavi
+    GitHub: https://github.com/NadimGhaznavi/systemctl
     License: GPL 3.0
 """
 # Import supporting modules
@@ -13,11 +13,10 @@ import subprocess
 import re
 import time
 
-
 # How long to wait until timing out
 TIMEOUT = 30
 
-class Db4ESystemD:
+class systemctl:
 
     def __init__(self, service_name):
         # Make sure systemd doesn't clutter the output with color codes or use a pager
