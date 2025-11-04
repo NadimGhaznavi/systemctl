@@ -1,43 +1,42 @@
 ---
-title: db4e-systemd
+title: systemctl
 layout: default
 ---
 # Introduction
 
-A lightweight Python module to interact with `systemd` services via `systemctl`, designed for use in Python-based service managers, admin tools, and dashboards.
+A lightweight Python wrapper for the `systemctl` command, designed for use in Python-based service managers, admin tools, and dashboards.
 
 ---
 
 # Features
 
-* Query service status, PID, and enablement
+* Query service status, PID, and enable status
 * Start, stop, and restart services
 * Enable and disable services
 * Structured output, clean API
 * Parses and interprets `systemctl` output
 
-**IMPORTANT NOTE:** All `systemctl` operations except for `sysemctl status` require root access. This module uses `sudo` to deal with this fact. It's recommended that you use a fine-grained sudo configuration. For example, the following two lines in the `/etc/sudoers` file allow the *sally* user to start and stop the *db4e* services. 
+**IMPORTANT NOTE:** All `systemctl` operations except for `sysemctl status` require root access. This module uses `sudo` to deal with this fact. It's recommended that you use a fine-grained sudo configuration. For example, the following two lines in the `/etc/sudoers` file allow the *sally* user to start and stop the *db4e* services **without prompting for a password** to make your Python project run smoothly.
 
 ```
 sally ALL=(ALL) NOPASSWD: /bin/systemctl start db4e
 sally ALL=(ALL) NOPASSWD: /bin/systemctl stop db4e
 ```
 
-So a script that *sally* runs that uses this module will be successful in starting and stopping the *db4e* service, but will fail if `enable()` or `disable()` are attempted.
+The above *sudo configuration* script that *sally* runs that uses this module will be successful in starting and stopping the *db4e* service, but will fail if `enable()` or `disable()` are attempted.
 
 ---
 
 # Installation
 
 ```bash
-pip install db4e-systemd
+pip install systemctl
 ```
 
 Or clone locally:
 
 ```bash
-git clone https://github.com/NadimGhaznavi/db4esystemd.git
-cd db4e-systemd
+git clone https://github.com/NadimGhaznavi/systemctl
 ```
 
 ---
@@ -45,9 +44,9 @@ cd db4e-systemd
 # Example Usage
 
 ```python
-from Db4eSystemd.Db4eSystemd import Db4eSystemd
+from systemctl.systemctl import systemctl
 
-svc = Db4eSystemd('db4e')
+svc = systemctl('db4e')
 
 if not svc.installed():
     print("Service not installed")
@@ -87,5 +86,5 @@ GPL v3 - See LICENSE.txt
 
 ---
 
-Created and maintained by Nadim-Daniel Ghaznavi. Part of the [Database 4 Everything](https://github.com/NadimGhaznavi/db4e) project.
+Created and maintained by Nadim-Daniel Ghaznavi. This module was developed as a component for the [Database 4 Everything](https://db4e.osoyalce.com) project.
 
