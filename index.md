@@ -94,4 +94,3 @@ GPL v3 - See LICENSE.txt
 
 Created and maintained by Nadim-Daniel Ghaznavi. This module was developed as a component for the [Database 4 Everything](https://db4e.osoyalce.com) project.
 
-
