@@ -82,7 +82,7 @@ svc.stderr()         # Raw systemctl stderr
 
 # Documentation
 
-- [Sphinx Generated Documentation](/sphinx-docs/index.html)
+- [Sphinx Generated Documentation](/sphinx-docs/html/index.html)
 
 ---
 
