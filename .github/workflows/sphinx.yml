@@ -13,26 +13,22 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-
+        permissions:
+            contents: write
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+            - uses: actions/checkout@v4
               with:
-                  persist-credentials: true # Needed to push back to main
-
-            - name: Set up Python
-              uses: actions/setup-python@v5
+                  persist-credentials: false
+            - name: Build HTML
+              uses: ammaraskar/sphinx-action@master
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v4
               with:
-                  python-version: "3.11"
-
-            - name: Clean old HTML docs
-              run: |
-                  rm -rf docs/_build/html/*
-
-            - name: Build Sphinx HTML docs
-              run: poetry run sphinx-build -b html docs sphinx-docs
-
-            - name: Commit and push docs
-              run: |
-                  git config user.name "github-actions[bot]"
-                  git config user.email "github-actions[bot]@users.noreply.github.c
+                  name: html-docs
+                  path: docs/build/html/
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@v3
+              if: github.ref == 'refs/heads/main'
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: sphinx-docs
