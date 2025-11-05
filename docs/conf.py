@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.abspath(".."))
 project = "SystemCtl"
 copyright = "2025, Nadim-Daniel Ghaznavi"
 author = "Nadim-Daniel Ghaznavi"
-release = "1.2.11"
+release = "1.2.12"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -24,12 +24,10 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
-    "recommonmark",
 ]
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
-source_suffix = [".rst", ".md"]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

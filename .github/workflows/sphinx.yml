@@ -20,9 +20,6 @@ jobs:
               with:
                   persist-credentials: false
 
-            - name: Install dependencies
-              run: pip install recommonmark
-
             - name: Build HTML
               uses: ammaraskar/sphinx-action@master
 
