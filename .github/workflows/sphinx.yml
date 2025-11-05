@@ -6,7 +6,7 @@ on:
         paths:
             - "docs/**"
             - "pyproject.toml"
-            - ".github/workflows/sphinx-docs.yml"
+            - ".github/workflows/sphinx.yml"
 
 jobs:
     build:
