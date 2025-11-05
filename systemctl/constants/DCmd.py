@@ -1,4 +1,4 @@
-# constants/DEnviron.py
+# constants/DCmd.py
 #
 #    systemctl - A Python wrapper for the systemctl command line utility.
 #    Author: Nadim-Daniel Ghaznavi
@@ -7,8 +7,8 @@
 #    License: GPL 3.0
 
 
-class DEnviron:
+class DCmd:
     """Constants related to the runtime systemctl CLI environment."""
 
-    SYSTEMD_COLORS: str = "SYSTEMD_COLORS"
-    SYSTEMD_PAGER: str = "SYSTEMD_PAGER"
+    SUDO: str = "sudo"
+    SYSTEMCTL: str = "systemctl"

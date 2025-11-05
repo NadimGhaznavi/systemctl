@@ -1,6 +1,6 @@
 [project]
 name = "systemctl"
-version = "1.2.3"
+version = "1.2.4"
 description = "A Python wrapper for systemctl."
 authors = [{ name = "Nadim-Daniel Ghaznavi", email = "nghaznavi@gmail.com" }]
 license = { text = "GPL-3.0" }
@@ -15,9 +15,16 @@ classifiers = [
     "Operating System :: POSIX :: Linux",
     "Topic :: System :: Systems Administration",
 ]
-requires-python = ">=3.11,<3.14"
 
-dependencies = []
+[tool.poetry.dependencies]
+python = "^3.11"
+recommonmark = "^0.7.1"
+sphinxcontrib-applehelp = "^2.0.0"
+sphinxcontrib-devhelp = "^2.0.0"
+sphinxcontrib-htmlhelp = "^2.1.0"
+sphinxcontrib-jsmath = "^1.0.1"
+sphinxcontrib-qthelp = "^2.0.0"
+sphinxcontrib-serializinghtml = "^2.0.0"
 
 [project.urls]
 "Bug Tracker" = "https://github.com/NadimGhaznavi/systemctl/issues"
