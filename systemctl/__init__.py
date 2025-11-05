@@ -14,9 +14,15 @@ import subprocess
 import re
 
 # Import systemctl constant definitions
-from constants.DEnviron import DEnviron
-from constants.DResult import DResult
-from constants.DSystemctl import DSystemd, TIMEOUT_MSG, SYSTEMCTL, SUDO, TIMEOUT
+from systemctl.constants.DEnviron import DEnviron
+from systemctl.constants.DResult import DResult
+from systemctl.constants.DSystemctl import (
+    DSystemd,
+    TIMEOUT_MSG,
+    SYSTEMCTL,
+    SUDO,
+    TIMEOUT,
+)
 
 
 class systemctl:
