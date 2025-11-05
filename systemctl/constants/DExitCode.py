@@ -1,4 +1,4 @@
-# constants/DEnviron.py
+# constants/DExitCode.py
 #
 #    systemctl - A Python wrapper for the systemctl command line utility.
 #    Author: Nadim-Daniel Ghaznavi
@@ -7,8 +7,8 @@
 #    License: GPL 3.0
 
 
-class DEnviron:
+class DExitCode:
     """Constants related to the runtime systemctl CLI environment."""
 
-    SYSTEMD_COLORS: str = "SYSTEMD_COLORS"
-    SYSTEMD_PAGER: str = "SYSTEMD_PAGER"
+    OK: int = 0
+    ERROR: int = 5

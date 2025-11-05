@@ -80,6 +80,12 @@ svc.stderr()         # Raw systemctl stderr
 
 ---
 
+# Documentation
+
+- [Sphinx Generated Documentation](/docs/_build/html/index.html)
+
+---
+
 # License
 
 GPL v3 - See LICENSE.txt

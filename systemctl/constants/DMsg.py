@@ -1,4 +1,4 @@
-# constants/DEnviron.py
+# constants/DSystemctl.py
 #
 #    systemctl - A Python wrapper for the systemctl command line utility.
 #    Author: Nadim-Daniel Ghaznavi
@@ -7,8 +7,9 @@
 #    License: GPL 3.0
 
 
-class DEnviron:
-    """Constants related to the runtime systemctl CLI environment."""
+class DMsg:
+    """Constants related to systemctl messages."""
 
-    SYSTEMD_COLORS: str = "SYSTEMD_COLORS"
-    SYSTEMD_PAGER: str = "SYSTEMD_PAGER"
+    NO_SERVICE_NAME: str = "service name not specified"
+    NOT_FOUND: str = "could not be found"
+    TIMEOUT: str = "systemctl timed out"

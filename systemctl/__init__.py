@@ -1,12 +1,10 @@
-"""
-systemctl/__init__.py
-
-    systemctl - A Python wrapper for the systemctl command line utility.
-    Author: Nadim-Daniel Ghaznavi
-    Copyright: (c) 2025 Nadim-Daniel Ghaznavi
-    GitHub: https://github.com/NadimGhaznavi/systemctl
-    License: GPL 3.0
-"""
+# systemctl/__init__.py
+#
+#    systemctl - A Python wrapper for the systemctl command line utility.
+#    Author: Nadim-Daniel Ghaznavi
+#    Copyright: (c) 2025 Nadim-Daniel Ghaznavi
+#    GitHub: https://github.com/NadimGhaznavi/systemctl
+#    License: GPL 3.0
 
 # Import supporting modules
 import os
@@ -15,20 +13,12 @@ import re
 from enum import IntEnum
 
 # Import systemctl constant definitions
+from systemctl.constants.DCmd import DCmd
 from systemctl.constants.DEnviron import DEnviron
+from systemctl.constants.DExitCode import DExitCode
+from systemctl.constants.DMsg import DMsg
 from systemctl.constants.DResult import DResult
-from systemctl.constants.DSystemCtl import DSystemCtl as DSystemCtl
-from systemctl.constants.DSystemCtl import DMsg as DMsg
-from systemctl.constants.DSystemCtl import (
-    SYSTEMCTL,
-    SUDO,
-    TIMEOUT,
-)
-
-
-class ExitCode(IntEnum):
-    OK = 0
-    ERROR = 5
+from systemctl.constants.DSystemCtl import DSystemCtl
 
 
 class SystemCtl:
@@ -45,61 +35,72 @@ class SystemCtl:
             DResult.RAW_STDERR: "",
         }
         self._service_name = service_name
-        self._timeout = TIMEOUT
+        self._timeout = DSystemCtl.TIMEOUT
         self._update_status()
 
-    def disable(self):
+    def start(self):
         """
-        Disable the service.
+        Start a systemd service.
+
+        :return: The exit code of the systemctl command.
+        :rtype: int
         """
         if not self._service_name:
             raise ValueError(DMsg.NO_SERVICE_NAME)
-        return self._run_systemctl(DSystemCtl.DISABLE)
+        return self._run_systemctl(DSystemCtl.START)
 
-    def enable(self):
+    def stop(self):
         """
-        Enable the service.
+        Stop a systemd service.
+
+        :return: The exit code of the systemctl command.
+        :rtype: int
         """
         if not self._service_name:
             raise ValueError(DMsg.NO_SERVICE_NAME)
-        return self._run_systemctl(DSystemCtl.ENABLE)
-
-    def enabled(self):
-        """
-        Return a boolean indicating if a service is enabled or not.
-        """
-        return self.result[DResult.ENABLED]
-
-    def installed(self):
-        """
-        Return a boolean indicating if the service is present at all.
-        """
-        return not self.stderr()
-
-    def pid(self):
-        """
-        Return the PID of a running service.
-        """
-        return self.result[DResult.PID]
+        return self._run_systemctl(DSystemCtl.STOP)
 
     def restart(self):
         """
         Restart a service.
+
+        :return: The exit code of the systemctl command.
+        :rtype: int
         """
         if not self._service_name:
             raise ValueError(DMsg.NO_SERVICE_NAME)
         return self._run_systemctl(DSystemCtl.RESTART)
 
-    def running(self):
+    def enable(self):
         """
-        Return a boolean indicating if the service is running or not.
+        Enable the service.
+
+        :return: The exit code of the systemctl command.
+        :rtype: int
         """
-        self._update_status()
-        return self.result[DResult.ACTIVE]
+        if not self._service_name:
+            raise ValueError(DMsg.NO_SERVICE_NAME)
+        return self._run_systemctl(DSystemCtl.ENABLE)
+
+    def disable(self):
+        """
+        Disable the service.
+
+        :return: The exit code of the systemctl command.
+        :rtype: int
+        """
+        if not self._service_name:
+            raise ValueError(DMsg.NO_SERVICE_NAME)
+        return self._run_systemctl(DSystemCtl.DISABLE)
 
     def service_name(self, service_name=None):
         """
         Get/Set the service_name.
+
+        :param: Optional service name.
+        :type: str
+        :return: The service name.
+        :rtype: str
         """
         old_service_name = self._service_name
         if service_name:
@@ -108,13 +109,34 @@ class SystemCtl:
                 self._update_status()
         return self._service_name
 
-    def start(self):
+    def enabled(self):
         """
-        Start a systemd service.
+        :return: Whether or not the service is enabled.
+        :rtype: bool
         """
-        if not self._service_name:
-            raise ValueError(DMsg.NO_SERVICE_NAME)
-        return self._run_systemctl(DSystemCtl.START)
+        return self.result[DResult.ENABLED]
+
+    def installed(self):
+        """
+        :return: Whether the service is present at all.
+        :rtype: bool
+        """
+        return not self.stderr()
+
+    def running(self):
+        """
+        :return: Whether or not the service is running.
+        :rtype: bool
+        """
+        self._update_status()
+        return self.result[DResult.ACTIVE]
+
+    def pid(self):
+        """
+        :return: The PID of the running service.
+        :rtype: int
+        """
+        return self.result[DResult.PID]
 
     def _update_status(self):
         """
@@ -154,27 +176,24 @@ class SystemCtl:
 
     def stdout(self):
         """
-        Return the raw STDOUT of a 'systemctl status service_name' command.
+        :return: The raw STDOUT of a 'systemctl status service_name' command.
+        :rtype: str
         """
         return self.result[DResult.RAW_STDOUT]
 
     def stderr(self):
         """
-        Return the raw STDERR of a 'systemctl status service_name' command.
+        :return: The raw STDERR of a 'systemctl status service_name' command.
+        :rtype: str
         """
         return self.result[DResult.RAW_STDERR]
 
-    def stop(self):
-        """
-        Stop a systemd service.
-        """
-        if not self._service_name:
-            raise ValueError(DMsg.NO_SERVICE_NAME)
-        return self._run_systemctl(DSystemCtl.STOP)
-
     def timeout(self, timeout=None):
         """
-        Get/Set the timeout.
+        :param: Optional timeout value for the systemctl command.
+        :type: int
+        :return: The timeout value.
+        :rtype: int
         """
         if timeout is not None:
             self._timeout = timeout
@@ -186,9 +205,9 @@ class SystemCtl:
         command and load the instance's result dictionary.
         """
         if arg == DSystemCtl.STATUS:
-            cmd = [SYSTEMCTL, arg, self._service_name]
+            cmd = [DCmd.SYSTEMCTL, arg, self._service_name]
         else:
-            cmd = [SUDO, SYSTEMCTL, arg, self._service_name]
+            cmd = [DCmd.SUDO, DCmd.SYSTEMCTL, arg, self._service_name]
 
         try:
             proc = subprocess.run(
@@ -204,12 +223,12 @@ class SystemCtl:
         except subprocess.TimeoutExpired:
             self.result[DResult.RAW_STDOUT] = ""
             self.result[DResult.RAW_STDERR] = DMsg.TIMEOUT
-            return ExitCode.ERROR
+            return DExitCode.ERROR
 
         except Exception as e:
             self.result[DResult.RAW_STDOUT] = ""
             self.result[DResult.RAW_STDERR] = str(e)
-            return ExitCode.ERROR
+            return DExitCode.ERROR
 
         self.result[DResult.RAW_STDOUT] = stdout
         self.result[DResult.RAW_STDERR] = stderr

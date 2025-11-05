@@ -18,6 +18,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.11"
+recommonmark = "^0.7.1"
 sphinxcontrib-applehelp = "^2.0.0"
 sphinxcontrib-devhelp = "^2.0.0"
 sphinxcontrib-htmlhelp = "^2.1.0"

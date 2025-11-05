@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Raised a `ValueError` if `_run_systemctl()` is called before the service name is set.
 - Added *Sphinx* documentation generator modules to the `pyproject.toml` file.
+  - Added the `recommonmark` module to support parsing `.md` files.
+- Ran `sphinx-quickstart` to setup the basic Sphinx documentation directory structure
 
 ### Changed
 - Minor refactor of the constant files
