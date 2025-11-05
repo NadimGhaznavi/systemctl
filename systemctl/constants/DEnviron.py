@@ -17,6 +17,8 @@ class _DEnviron(TypedDict):
 
 
 class DEnviron:
+    """Constants related to the runtime systemctl CLI environment."""
+
     SYSTEMD_COLORS: Final[str] = "SYSTEMD_COLORS"
     SYSTEMD_PAGER: Final[str] = "SYSTEMD_PAGER"
 

@@ -20,6 +20,8 @@ class _DResult(TypedDict):
 
 
 class DResult:
+    """Constants related to parsed systemctl command results."""
+
     ACTIVE: Final[str] = "active"
     PID: Final[str] = "pid"
     ENABLED: Final[str] = "enabled"
