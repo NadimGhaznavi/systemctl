@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.abspath(".."))
 project = "SystemCtl"
 copyright = "2025, Nadim-Daniel Ghaznavi"
 author = "Nadim-Daniel Ghaznavi"
-release = "1.2.10"
+release = "1.2.11"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
