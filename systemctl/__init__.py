@@ -12,20 +12,26 @@ systemctl/__init__.py
 import os
 import subprocess
 import re
+from enum import IntEnum
 
 # Import systemctl constant definitions
 from systemctl.constants.DEnviron import DEnviron
 from systemctl.constants.DResult import DResult
-from systemctl.constants.DSystemctl import (
-    DSystemd,
-    TIMEOUT_MSG,
+from systemctl.constants.DSystemCtl import DSystemCtl as DSystemCtl
+from systemctl.constants.DSystemCtl import DMsg as DMsg
+from systemctl.constants.DSystemCtl import (
     SYSTEMCTL,
     SUDO,
     TIMEOUT,
 )
 
 
-class systemctl:
+class ExitCode(IntEnum):
+    OK = 0
+    ERROR = 5
+
+
+class SystemCtl:
 
     def __init__(self, service_name=None):
         # Make sure systemd doesn't clutter the output with color codes or use a pager
@@ -46,13 +52,17 @@ class systemctl:
         """
         Disable the service.
         """
-        return self._run_systemctl(DSystemd.DISABLE)
+        if not self._service_name:
+            raise ValueError(DMsg.NO_SERVICE_NAME)
+        return self._run_systemctl(DSystemCtl.DISABLE)
 
     def enable(self):
         """
         Enable the service.
         """
-        return self._run_systemctl(DSystemd.ENABLE)
+        if not self._service_name:
+            raise ValueError(DMsg.NO_SERVICE_NAME)
+        return self._run_systemctl(DSystemCtl.ENABLE)
 
     def enabled(self):
         """
@@ -64,9 +74,7 @@ class systemctl:
         """
         Return a boolean indicating if the service is present at all.
         """
-        if self.stderr():
-            return False
-        return True
+        return not self.stderr()
 
     def pid(self):
         """
@@ -78,7 +86,9 @@ class systemctl:
         """
         Restart a service.
         """
-        return self._run_systemctl(DSystemd.RESTART)
+        if not self._service_name:
+            raise ValueError(DMsg.NO_SERVICE_NAME)
+        return self._run_systemctl(DSystemCtl.RESTART)
 
     def running(self):
         """
@@ -102,18 +112,25 @@ class systemctl:
         """
         Start a systemd service.
         """
-        return self._run_systemctl(DSystemd.START)
+        if not self._service_name:
+            raise ValueError(DMsg.NO_SERVICE_NAME)
+        return self._run_systemctl(DSystemCtl.START)
 
     def _update_status(self):
         """
         (Re)load the instance's result's dictionary.
         """
+        if not self._service_name:
+            raise ValueError(DMsg.NO_SERVICE_NAME)
 
-        self._run_systemctl(DSystemd.STATUS)
+        self._run_systemctl(DSystemCtl.STATUS)
         stdout = self.stdout()
         stderr = self.stderr()
 
-        if "could not be found" in stderr:
+        if DMsg.NOT_FOUND in stderr:
+            self.result[DResult.ACTIVE] = None
+            self.result[DResult.PID] = None
+            self.result[DResult.ENABLED] = None
             return
 
         # Check for active state
@@ -151,7 +168,9 @@ class systemctl:
         """
         Stop a systemd service.
         """
-        return self._run_systemctl(DSystemd.STOP)
+        if not self._service_name:
+            raise ValueError(DMsg.NO_SERVICE_NAME)
+        return self._run_systemctl(DSystemCtl.STOP)
 
     def timeout(self, timeout=None):
         """
@@ -166,7 +185,7 @@ class systemctl:
         Execute a 'systemctl [start|stop|restart|status|enable|disable] service_name'
         command and load the instance's result dictionary.
         """
-        if arg == DSystemd.STATUS:
+        if arg == DSystemCtl.STATUS:
             cmd = [SYSTEMCTL, arg, self._service_name]
         else:
             cmd = [SUDO, SYSTEMCTL, arg, self._service_name]
@@ -183,17 +202,19 @@ class systemctl:
             stderr = proc.stderr.decode(errors="replace")
 
         except subprocess.TimeoutExpired:
-            self.result[DResult.RAW_STDOUT] = TIMEOUT_MSG
-            return 5
+            self.result[DResult.RAW_STDOUT] = ""
+            self.result[DResult.RAW_STDERR] = DMsg.TIMEOUT
+            return ExitCode.ERROR
 
         except Exception as e:
+            self.result[DResult.RAW_STDOUT] = ""
             self.result[DResult.RAW_STDERR] = str(e)
-            return 5
+            return ExitCode.ERROR
 
         self.result[DResult.RAW_STDOUT] = stdout
         self.result[DResult.RAW_STDERR] = stderr
 
-        if arg == DSystemd.ENABLE or arg == DSystemd.DISABLE:
+        if arg == DSystemCtl.ENABLE or arg == DSystemCtl.DISABLE:
             # Reload the status information
             self._update_status()
 
