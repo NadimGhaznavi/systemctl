@@ -30,11 +30,9 @@ jobs:
                   path: sphinx-docs/html/
 
             - name: Deploy
-              if: github.ref == 'refs/heads/main'
-              run: |
-                  git config --global user.name "github-actions[bot]"
-                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
-                  touch sphinx-docs/html/.nojekyll
-                  git add sphinx-docs/html
-                  git commit -m "Update Sphinx documentation" || echo "No changes to commit"
-                  git push origin main
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: sphinx-docs/html
+                  publish_branch: main
+                  enable_jekyll: false
