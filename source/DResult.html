@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>DMsg &#8212; SystemCtl 1.2.15 documentation</title>
+    <title>DResult &#8212; SystemCtl 1.2.16 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="DExitCode" href="DExitCode.html" />
-    <link rel="prev" title="DSystemCtl" href="DSystemCtl.html" />
+    <link rel="next" title="DSystemCtl" href="DSystemCtl.html" />
+    <link rel="prev" title="DEnviron" href="DEnviron.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -32,25 +32,35 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="dmsg">
-<h1>DMsg<a class="headerlink" href="#dmsg" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="dresult">
+<h1>DResult<a class="headerlink" href="#dresult" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt>
-<em class="property">class </em><code class="sig-prename descclassname">systemctl.constants.DMsg.</code><code class="sig-name descname">DMsg</code><a class="reference internal" href="../_modules/systemctl/constants/DMsg.html#DMsg"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Constants related to systemctl messages.</p>
+<em class="property">class </em><code class="sig-prename descclassname">systemctl.constants.DResult.</code><code class="sig-name descname">DResult</code><a class="reference internal" href="../_modules/systemctl/constants/DResult.html#DResult"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Constants related to parsed systemctl command results.</p>
 <dl class="attribute">
 <dt>
-<code class="sig-name descname">NOT_FOUND</code><em class="property">: str</em><em class="property"> = 'could not be found'</em></dt>
+<code class="sig-name descname">ACTIVE</code><em class="property">: str</em><em class="property"> = 'active'</em></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt>
-<code class="sig-name descname">NO_SERVICE_NAME</code><em class="property">: str</em><em class="property"> = 'service name not specified'</em></dt>
+<code class="sig-name descname">ENABLED</code><em class="property">: str</em><em class="property"> = 'enabled'</em></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt>
-<code class="sig-name descname">TIMEOUT</code><em class="property">: str</em><em class="property"> = 'systemctl timed out'</em></dt>
+<code class="sig-name descname">PID</code><em class="property">: str</em><em class="property"> = 'pid'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">RAW_STDERR</code><em class="property">: str</em><em class="property"> = 'raw_stderr'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">RAW_STDOUT</code><em class="property">: str</em><em class="property"> = 'raw_stdout'</em></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -78,9 +88,9 @@
 <li class="toctree-l1"><a class="reference internal" href="SystemCtl.html">SystemCtl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DCmd.html">DCmd</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DEnviron.html">DEnviron</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DResult.html">DResult</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DResult</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DSystemCtl.html">DSystemCtl</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">DMsg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DMsg.html">DMsg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DExitCode.html">DExitCode</a></li>
 </ul>
 
@@ -88,8 +98,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="DSystemCtl.html" title="previous chapter">DSystemCtl</a></li>
-      <li>Next: <a href="DExitCode.html" title="next chapter">DExitCode</a></li>
+      <li>Previous: <a href="DEnviron.html" title="previous chapter">DEnviron</a></li>
+      <li>Next: <a href="DSystemCtl.html" title="next chapter">DSystemCtl</a></li>
   </ul></li>
 </ul>
 </div>
@@ -123,7 +133,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/source/DMsg.rst.txt"
+      <a href="../_sources/source/DResult.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

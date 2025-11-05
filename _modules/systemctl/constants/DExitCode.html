@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>systemctl.constants.DMsg &#8212; SystemCtl 1.2.15 documentation</title>
+    <title>systemctl.constants.DExitCode &#8212; SystemCtl 1.2.16 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -30,8 +30,8 @@
 
           <div class="body" role="main">
             
-  <h1>Source code for systemctl.constants.DMsg</h1><div class="highlight"><pre>
-<span></span><span class="c1"># constants/DSystemctl.py</span>
+  <h1>Source code for systemctl.constants.DExitCode</h1><div class="highlight"><pre>
+<span></span><span class="c1"># constants/DExitCode.py</span>
 <span class="c1">#</span>
 <span class="c1">#    systemctl - A Python wrapper for the systemctl command line utility.</span>
 <span class="c1">#    Author: Nadim-Daniel Ghaznavi</span>
@@ -40,12 +40,11 @@
 <span class="c1">#    License: GPL 3.0</span>
 
 
-<div class="viewcode-block" id="DMsg"><a class="viewcode-back" href="../../../source/DMsg.html#systemctl.constants.DMsg.DMsg">[docs]</a><span class="k">class</span> <span class="nc">DMsg</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Constants related to systemctl messages.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="DExitCode"><a class="viewcode-back" href="../../../source/DExitCode.html#systemctl.constants.DExitCode.DExitCode">[docs]</a><span class="k">class</span> <span class="nc">DExitCode</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Constants related to the runtime systemctl CLI environment.&quot;&quot;&quot;</span>
 
-    <span class="n">NO_SERVICE_NAME</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;service name not specified&quot;</span>
-    <span class="n">NOT_FOUND</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;could not be found&quot;</span>
-    <span class="n">TIMEOUT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;systemctl timed out&quot;</span></div>
+    <span class="n">OK</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ERROR</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span></div>
 </pre></div>
 
           </div>
