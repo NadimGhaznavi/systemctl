@@ -40,14 +40,7 @@ class systemctl:
         }
         self._service_name = service_name
         self._timeout = TIMEOUT
-        self.status()
-
-    def active(self):
-        """
-        Return a boolean indicating if the service is running or not.
-        """
-        self.status()
-        return self.result[DResult.ACTIVE]
+        self._update_status()
 
     def disable(self):
         """
@@ -87,6 +80,13 @@ class systemctl:
         """
         return self._run_systemctl(DSystemd.RESTART)
 
+    def running(self):
+        """
+        Return a boolean indicating if the service is running or not.
+        """
+        self._update_status()
+        return self.result[DResult.ACTIVE]
+
     def service_name(self, service_name=None):
         """
         Get/Set the service_name.
@@ -95,7 +95,7 @@ class systemctl:
         if service_name:
             self._service_name = service_name
             if service_name != old_service_name:
-                self.status()
+                self._update_status()
         return self._service_name
 
     def start(self):
@@ -104,7 +104,7 @@ class systemctl:
         """
         return self._run_systemctl(DSystemd.START)
 
-    def status(self):
+    def _update_status(self):
         """
         (Re)load the instance's result's dictionary.
         """
@@ -116,13 +116,12 @@ class systemctl:
         if "could not be found" in stderr:
             return
 
-        # print(f"Db4ESystemD:status(): stdout: {stdout}")
         # Check for active state
         if re.search(r"^\s*Active:\s+active \(running\).*", stdout, re.MULTILINE):
             self.result[DResult.ACTIVE] = True
-        elif re.search(r"^\s*Active:\s+inactive \(dead\).*", stdout, re.MULTILINE):
+        elif re.search(r"^\s*Main PID:.*\(code=exited\).*", stdout, re.MULTILINE):
             self.result[DResult.ACTIVE] = False
-        elif re.search(r"^\s*Active:\s+failed.*", stdout, re.MULTILINE):
+        elif re.search(r"^\s*Active:\s+inactive \(dead\).*", stdout, re.MULTILINE):
             self.result[DResult.ACTIVE] = False
 
         # Check for enabled state
@@ -196,7 +195,7 @@ class systemctl:
 
         if arg == DSystemd.ENABLE or arg == DSystemd.DISABLE:
             # Reload the status information
-            self.status()
+            self._update_status()
 
         # Return the return code for the systemctl command
         return proc.returncode
