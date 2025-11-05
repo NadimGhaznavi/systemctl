@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.abspath(".."))
 project = "SystemCtl"
 copyright = "2025, Nadim-Daniel Ghaznavi"
 author = "Nadim-Daniel Ghaznavi"
-release = "1.2.18"
+release = "1.2.19"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -33,4 +33,4 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "alabaster"
-html_static_path = ["_static"]
+html_static_path = ["static"]
