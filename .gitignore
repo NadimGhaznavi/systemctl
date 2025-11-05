@@ -1,3 +1,21 @@
-__pycache__
-docs/_build/doctrees
-systemctl_venv
+# Python cache and virtual environment
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+*.pyo
+*.pyd
+env/
+systemctl_venv/
+
+# Sphinx build artifacts (temporary folders)
+docs/_build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.vscode/
+.idea/
