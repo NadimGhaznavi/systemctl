@@ -1,0 +1,7 @@
+title: systemctl
+description: Lightweight Python module wrapper for systemctl
+
+remote_theme: nadimghaznavi/minimax
+
+plugins:
+  - jekyll-remote-theme
