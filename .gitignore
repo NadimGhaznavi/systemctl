@@ -10,7 +10,7 @@ env/
 systemctl_venv/
 
 # Sphinx build artifacts (temporary folders)
-docs/_build/
+docs/build/
 
 # OS files
 .DS_Store
