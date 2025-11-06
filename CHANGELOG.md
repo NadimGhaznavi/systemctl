@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.3.0]
+## [1.3.0] - 2025-11-05
 
 ### Added
 - Raised a `ValueError` if `_run_systemctl()` is called before the service name is set.

@@ -1,4 +1,4 @@
-title: systemctl
+title: SystemCtl
 description: Lightweight Python module wrapper for systemctl
 
 remote_theme: nadimghaznavi/minimax
