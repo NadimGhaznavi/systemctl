@@ -2,6 +2,9 @@
 title: systemctl
 layout: default
 ---
+
+![SystemCtl Image](/images/systemctl.png)
+
 # Introduction
 
 A lightweight Python wrapper for the `systemctl` command, designed for use in Python-based service managers, admin tools, and dashboards.
@@ -62,23 +65,19 @@ else:
 # Methods
 
 ```python
-from systemctl.systemctl import systemctl
-
-
-svc = systemctl('myservice')
-
 svc.start()          # Start service
 svc.stop()           # Stop service
 svc.restart()        # Restart service
 svc.enable()         # Enable service startup at boot time
 svc.disable()        # Disable service startup at boot time
-svc.status()         # Refresh status
-svc.active()         # True/False
-svc.enabled()        # True/False
-svc.installed()      # True/False
-svc.pid()            # Integer PID or None
-svc.stdout()         # Raw systemctl stdout
-svc.stderr()         # Raw systemctl stderr
+sve.service_name()   # Get/Set the service name
+svc.running()        # Check if the service is running
+svc.enabled()        # Check if the service is enabled
+svc.installed()      # Check if the service is present
+svc.pid()            # The PID of the running process
+svc.stdout()         # Raw systemctl stdout from systemctl
+svc.stderr()         # Raw systemctl stderr from systemctl
+svc.timeout()        # Set the timeout value for systemctl
 ```
 ---
 
