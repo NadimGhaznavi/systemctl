@@ -59,30 +59,9 @@ else:
 
 ---
 
-# Methods
+# Sphinx Generated Documentation
 
-```python
-svc = Db4eSystemd('myservice')
-
-svc.start()          # Start service
-svc.stop()           # Stop service
-svc.restart()        # Restart service
-svc.enable()         # Enable service startup at boot time
-svc.disable()        # Disable service startup at boot time
-svc.status()         # Refresh status
-svc.active()         # True/False
-svc.enabled()        # True/False
-svc.installed()      # True/False
-svc.pid()            # Integer PID or None
-svc.stdout()         # Raw systemctl stdout
-svc.stderr()         # Raw systemctl stderr
-```
-
----
-
-# Documentation
-
-- [Sphinx Generated Documentation](/sphinx-docs/html/index.html)
+- [SystemCtl on ReadTheDocs](https://systemctl.readthedocs.io/en/latest/)
 
 ---
 
