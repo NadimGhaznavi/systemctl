@@ -11,7 +11,13 @@ A lightweight Python wrapper for the `systemctl` command, designed for use in Py
 
 This module works by parsing the `systemctl` output, as opposed to interacting directly using the DBUS interface. So this module is *indirect* and will fail if the output of the `systemctl` tool's output changes. This seems unlikely to happen, it's extremely stable.
 
-The Python [psystem module](https://github.com/gokhanm/psystem?utm_source=chatgpt.com) provides a DBUS interface to systemd. It's an excellent piece of work. There is a trade-off. DBUS integration introduces significant dependencies. Specifically, you'll need a compiler and a functioning C/C++ build environment to build pystem's dependencies when you install the module. (`libsystemd-dev`, `gcc`, `python3-dev`, `pkg-config`).
+## An Alternative
+
+The Python [psystem module](https://github.com/gokhanm/psystem?utm_source=chatgpt.com) provide a Python alternative to the `systemctl` module.
+
+It provides a DBUS interface to systemd. DBUS integration introduces significant dependencies. Specifically, you'll need a compiler and a functioning C/C++ build environment to build pystem's dependencies when you install the module. (`libsystemd-dev`, `gcc`, `python3-dev`, `pkg-config`).
+
+The `psystem` module is an excellent piece of work.
 
 ---
 
