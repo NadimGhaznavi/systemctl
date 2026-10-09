@@ -9,6 +9,10 @@ layout: default
 
 A lightweight Python wrapper for the `systemctl` command, designed for use in Python-based service managers, admin tools, and dashboards.
 
+This module works by parsing the `systemctl` output, as opposed to interacting directly using the DBUS interface. So this module is *indirect* and will fail if the output of the `systemctl` tool's output changes. This seems unlikely to happen, it's extremely stable.
+
+The Python [psystem module](https://github.com/gokhanm/psystem?utm_source=chatgpt.com) provides a DBUS interface to systemd. It's an excellent piece of work. There is a trade-off. DBUS integration introduces significant dependencies. Specifically, you'll need a compiler and a functioning C/C++ build environment to build pystem's dependencies when you install the module. (`libsystemd-dev`, `gcc`, `python3-dev`, `pkg-config`).
+
 ---
 
 # Features
@@ -95,6 +99,6 @@ GPL v3 - See LICENSE.txt
 
 ---
 
-Created and maintained by Nadim-Daniel Ghaznavi. This module was developed as a component for the [Database 4 Everything](https://db4e.osoyalce.com) project.
+Created and maintained by Nadim-Daniel Ghaznavi. This module was developed as a component for the now deprecated *Database 4 Everything* project.
 
 
